@@ -60,7 +60,7 @@
             <form action="{{=URL('where','index')}}" enctype="multipart/form-data" method="post">
                 <input class="pay_val" name="v" readonly="" type="text" value="{{=volume_in}}">{{=curr_in_name}}<br>
                 Для этого скопируйте сумму и адрес (двойной клик по полю для выделения) и вставьте их в платеж на вашем кошельке: 
-                <input class="wallet" name="addr" readonly="" type="text" value="{{=addr}}"><br>
+                <input class="wallet" name="address" readonly="" type="text" value="{{=addr}}"><br>
                 Резервы службы <b>{{=e_bal}}</b> рублей<br>
                 <input class="button blue-bgc" size="6" type="submit" value="Подробный просмотр платежей">
             </form>

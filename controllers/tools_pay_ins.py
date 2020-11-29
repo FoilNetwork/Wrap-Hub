@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+if False:
+    from gluon import *
+    import db
+    request = current.request
+    response = current.response
+    session = current.session
+    cache = current.cache
+    T = current.T
+
 if not IS_LOCAL: raise HTTP(200, 'error...')
 
 def add_pay_in_tx():
@@ -49,15 +58,15 @@ def add_pay_in_tx():
     res.pop('vout')
     
     scriptPubKey = vout['scriptPubKey']
-    addr = scriptPubKey['addresses'][0]
-    acc_addr = db(db.deal_acc_addrs.addr==addr).select().first()
+    address = scriptPubKey['addresses'][0]
+    acc_addr = db(db.deal_acc_addrs.address==address).select().first()
     if not acc_addr:
-        return H3('not found order for address: ' + addr)
+        return H3('not found order for address: ' + address)
     
     value = vout['value']
     block = res['block']
 
-    return CAT(LABEL('block'), INPUT(_name='block', _value=block),' ', LABEL('address:'), INPUT(_name='address', _value=addr),
+    return CAT(LABEL('block'), INPUT(_name='block', _value=block),' ', LABEL('address:'), INPUT(_name='address', _value=address),
               ' ', LABEL('value:'), INPUT(_name='amount', _value=value),BR(),
               INPUT(_type='submit'))
 
@@ -74,7 +83,7 @@ def add_pay_in():
         import datetime
         #print form.vars
         form.vars = request.vars
-        acc_addr = db(db.deal_acc_addrs.addr==form.vars.addr).select().first()
+        acc_addr = db(db.deal_acc_addrs.address==form.vars.address).select().first()
         if not acc_addr:
             response.flash = 'not acc_addr founded'
             return dict(form=form)

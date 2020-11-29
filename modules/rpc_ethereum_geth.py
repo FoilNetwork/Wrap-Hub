@@ -236,7 +236,7 @@ def send(db, curr, xcurr, toAddr, amo, token_system, token=None, mess=None, send
         try:
             ##amo_to_pay = amo - txfee - it already inserted in GET_RATE by db.currs
             amo_to_pay = amo  # - txfee
-            print 'res = geth.send(addr, amo - txfee)', amo_to_pay
+            print 'res = geth.send(address, amo - txfee)', amo_to_pay
 
             txfee = long(txfee * Decimal(1E10))  ## and x 1+E10 by gasPrice
             amo_to_pay = long(amo_to_pay * Decimal(1E18))  ## in WEI

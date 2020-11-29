@@ -10,14 +10,14 @@ T = current.T
 import crypto_client
 import db_common
 
-def found_buys(db, addr):
+def found_buys(db, address):
     res = []
-    if not addr or len(addr) < 6: return res
-    #print addr
-    no_addr = addr == "????--"
+    if not address or len(address) < 6: return res
+    #print address
+    no_addr = address == "????--"
     expired = datetime.datetime.now() - datetime.timedelta(no_addr and 1 or 40, 0)
     for r in db(
-               (no_addr or db.buys.addr==addr)
+               (no_addr or db.buys.address == address)
                ##& (db.buys.id == db.buys_stack.ref_)
                & (db.buys.created_on > expired)
                ).select(orderby=~db.buys.created_on):
@@ -34,7 +34,7 @@ def found_buys(db, addr):
             abbrev = '???'
         st = rec.status
         st = st=='progress' and T('In progrress...') \
-            or st=='addr waiting' and T('Awaiting the wallet assign') or st
+            or st=='address waiting' and T('Awaiting the wallet assign') or st
         mess_out = rec.amo_out and '%s [%s] %s - txid:%s' % (rec.amo_out, abbrev, rec.created_on, rec.txid) or '0[%s] %s' % (abbrev, st)
         res.append({
             T('Вход'): mess_in,
@@ -106,7 +106,7 @@ def found_unconfirmed(db, curr, xcurr, addr, pays):
 
         for income in trans_details:
             if income[u'category'] != u'receive': continue
-            #print addr, income[u'address']
+            #print address, income[u'address']
             if addr_use and income[u'address'] != addr: continue
             # далее только входы будут
             #print 'income:   ',income
@@ -131,7 +131,7 @@ def found_pay_ins(db, curr_in, xcurr_in, addr, pays, amo_rest):
     for pay in db( (not privat)
                & (db.pay_ins.id == db.pay_ins_stack.ref_)
                & (db.pay_ins.ref_ == db.deal_acc_addrs.id)
-               & (no_addr or db.deal_acc_addrs.addr==addr)
+               & (no_addr or db.deal_acc_addrs.address==addr)
                ).select(orderby=~db.pay_ins.created_on):
         xcurr = db.xcurrs[pay.deal_acc_addrs.xcurr_id]
         if xcurr_in and xcurr_in.id != xcurr.id: continue
@@ -158,7 +158,7 @@ def found_pay_ins(db, curr_in, xcurr_in, addr, pays, amo_rest):
     # если без адреса то только 1 сутки
     expired = datetime.datetime.now() - datetime.timedelta(no_addr and 1 or 40, 0)
     for pay in db(
-               (no_addr or db.deal_acc_addrs.addr==addr)
+               (no_addr or db.deal_acc_addrs.address==addr)
                & (db.pay_ins.ref_ == db.deal_acc_addrs.id)
                & (db.pay_ins.created_on > expired)
                ).select(orderby=~db.pay_ins.created_on):

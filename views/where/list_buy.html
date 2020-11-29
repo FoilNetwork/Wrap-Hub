@@ -55,7 +55,7 @@
             or st=='addr waiting' and T('Awaiting the wallet assign') or st
             }}
         -> 
-            {{if no_addr:}} {{=r.addr}} {{pass}}
+            {{if no_addr:}} {{=r.address}} {{pass}}
             {{=abbrev and IMG(_src=URL('static','images/currs/' + abbrev + '.png'), _width=30) or ''}}
             {{if r.amo_out:}}
             {{=r.amo_out }} 

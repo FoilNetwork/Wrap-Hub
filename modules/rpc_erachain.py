@@ -213,7 +213,7 @@ def send(db, curr, xcurr, addr, amo, token_system=None, token=None, title=None, 
         try:
             ##amo_to_pay = amo - txfee - it already inserted in GET_RATE by db.currs
             amo_to_pay = amo
-            print 'res = erachain.send(addr, amo - txfee)', amo_to_pay
+            print 'res = erachain.send(address, amo - txfee)', amo_to_pay
             if False:  ## 4.11 version Erachain
                 # GET r_send/7GvWSpPr4Jbv683KFB5WtrCCJJa6M36QEP/79MXsjo9DEaxzu6kSvJUauLhmQrB4WogsH?message=mess&encrypt=false&password=123456789
                 pars = "r_send/%s/%s?assetKey=%d&amount=%f&title=%s%s&encrypt=true&password=%s" % (

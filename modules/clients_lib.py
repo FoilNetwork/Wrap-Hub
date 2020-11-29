@@ -234,14 +234,14 @@ def auto_collect(db):
                             & (db.clients_xwallets.xcurr_id == xcurr.id)).select().first()
             if not cl_xwallet: continue
             
-            addr = cl_xwallet.addr
+            addr = cl_xwallet.address
             if not addr or len(addr) < 20:
-                print 'not valid addr:', addr
+                print 'not valid address:', addr
                 continue
             
             valid = cn.validateaddress(addr)
             if not valid or 'isvalid' in valid and not valid['isvalid'] or 'ismine' in valid and valid['ismine']:
-                print 'not valid addr:', addr, valid
+                print 'not valid address:', addr, valid
                 continue
             print 'add bal:', cl_bal.bal
             addrs[addr] = round( float( cl_bal.bal ), 8 )
@@ -269,7 +269,7 @@ def auto_collect(db):
             amo = - trans[u'amount']
             print amo, addr
             rec = db((db.clients_xwallets.xcurr_id == xcurr.id)
-                    & (db.clients_xwallets.addr == addr)
+                    & (db.clients_xwallets.address == addr)
                     & (db.clients.id == db.clients_xwallets.client_id)
                     ).select().first()
             if not rec:

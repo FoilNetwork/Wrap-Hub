@@ -123,7 +123,7 @@ def from5(db):
             acc_id = db.deal_accs.insert(deal_id=deal.id, deal_acc=rec.phone)
 
         acc_addr = db((db.deal_acc_addrs.deal_acc_id == acc_id)
-                      & (db.deal_acc_addrs.addr == rec.wallet)
+                      & (db.deal_acc_addrs.address == rec.wallet)
                       & (db.deal_acc_addrs.xcurr_id == rec.xcurr_id)).select().first()
 
         if acc_addr:  continue

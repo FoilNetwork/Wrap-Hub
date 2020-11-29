@@ -295,20 +295,20 @@ def validate_addr():
 
     xcurr = None
     curr_abbrev = request.vars.get('curr')
-    addr = request.vars.get('address')
+    address = request.vars.get('addr')
     if len(request.args) == 1:
-        addr = request.args[0]
+        address = request.args[0]
     if len(request.args) == 2:
         curr_abbrev = request.args[0]
-        addr = addr or request.args[1]
+        address = address or request.args[1]
 
-    if not addr:
+    if not address:
         return {
             'error': 'need address or curr_abbrev, example: /validate_addr.json/[address] or /validate_addr.json/[curr_abbrev]/[address]'}
 
-    if addr and not curr_abbrev:
+    if address and not curr_abbrev:
         from db_common import get_currs_by_addr
-        curr, xcurr, _ = get_currs_by_addr(db, addr)
+        curr, xcurr, _ = get_currs_by_addr(db, address)
 
     if curr_abbrev:
         from db_common import get_currs_by_abbrev
@@ -337,10 +337,10 @@ def validate_addr():
     if type(1) != type(curr_block):
         return {'error': 'Connection to [%s] is lost, try later ' % curr.name}
 
-    if crypto_client.is_not_valid_addr(token_system, addr, conn):
-        return {'error': 'address not valid for ' + curr.name + ' - ' + addr}
+    if crypto_client.is_not_valid_addr(token_system, address, conn):
+        return {'error': 'address not valid for ' + curr.name + ' - ' + address}
 
-    return {'curr': curr.abbrev, 'ismine': token_system.account == addr}
+    return {'curr': curr.abbrev, 'ismine': token_system.account == address}
 
 
 @cache.action(time_expire=time_exp * 10, cache_model=cache.disk)
@@ -387,22 +387,22 @@ def rates3():
 # адес тут должен быть точный
 def for_addr():
     session.forget(response)
-    addr = request.vars and request.vars.get('address')
+    address = request.vars and request.vars.get('addr')
     # print address
-    if not addr or len(addr) < 24: return dict(pays=T('ошибочный адрес [%s]') % addr)
+    if not address or len(address) < 24: return dict(pays=T('ошибочный адрес [%s]') % address)
 
-    pays = where1.found_buys(db, addr)
+    pays = where1.found_buys(db, address)
     if len(pays) > 0:
         return dict(pays=pays)
 
     pays = []
     # все еще не подтвержденные
-    curr, xcurr, _, = db_common.get_currs_by_addr(db, addr)
+    curr, xcurr, _, = db_common.get_currs_by_addr(db, address)
     # print curr, '\n', xcurr
-    if not curr or not curr.used: return dict(pays=T('ошибочный адрес по первой букве [%s]') % addr)
-    where1.found_unconfirmed(db, curr, xcurr, addr, pays)
+    if not curr or not curr.used: return dict(pays=T('ошибочный адрес по первой букве [%s]') % address)
+    where1.found_unconfirmed(db, curr, xcurr, address, pays)
 
-    where1.found_pay_ins(db, curr, xcurr, addr, pays, None)
+    where1.found_pay_ins(db, curr, xcurr, address, pays, None)
     if len(pays) == 0: pays = T('Входов не найдено...')
     return dict(pays=pays)
 
@@ -410,13 +410,14 @@ def for_addr():
 # @cache.action(time_expire=request.is_local and 5 or 30, cache_model=cache.disk,
 #              vars=True, public=True, lang=True)
 def deals_does():
-    addr = request.args(0) or request.vars.addr
-    if addr and len(addr) > 40: addr = None
+    address = request.args(0) or request.vars.addr
+    if address and len(address) > 40: address = None
 
     import where3
+
     pays = []
 
-    deal_acc_addr = db(db.deal_acc_addrs.addr == addr).select().first()
+    deal_acc_addr = db(db.deal_acc_addrs.address == address).select().first()
     if not deal_acc_addr:
         return mess('Deals not found')
     xcurr_in = db.xcurrs[deal_acc_addr.xcurr_id]
@@ -449,17 +450,17 @@ def deals_does():
     adds_mess = XML(gifts_lib.adds_mess(deal_acc, PARTNER_MIN, T, rnd))
 
     pays_unconf = []
-    where3.found_unconfirmed(db, curr_in, xcurr_in, addr, pays_unconf)
+    where3.found_unconfirmed(db, curr_in, xcurr_in, address, pays_unconf)
     # print 'pays_unconf:', pays_unconf
 
     pays_process = []
-    where3.found_pay_ins_process(db, addr, pays_process)
+    where3.found_pay_ins_process(db, address, pays_process)
 
     pays = []
-    where3.found_pay_ins(db, addr, pays)
+    where3.found_pay_ins(db, address, pays)
     # print 'pays:', pays
     return dict(pays_unconf=pays_unconf, pays_process=pays_process, pays=pays,
-                payed_month=payed_month, MAX=MAX, addr=addr,
+                payed_month=payed_month, MAX=MAX, addr=address,
                 payed=payed, price=price, order_id=order_id, amo_rest_url=amo_rest_url,
                 adds_mess=adds_mess,
                 curr_in=curr_in, deal_acc=deal_acc,
@@ -468,9 +469,9 @@ def deals_does():
 
     # сюда пришло значит ищес общий список
     pays_process = []
-    where3.found_pay_ins_process(db, addr, pays_process)
+    where3.found_pay_ins_process(db, address, pays_process)
     pays = []
-    privat = where3.found_pay_ins(db, addr, pays)
+    privat = where3.found_pay_ins(db, address, pays)
 
     pays_unconf = []
     if not privat:
@@ -485,17 +486,17 @@ def deals_does():
 
 
 def deals_wait():
-    addr = request.args(0) or request.vars.addr
-    if addr and len(addr) > 40: addr = None
+    address = request.args(0) or request.vars.addr
+    if address and len(address) > 40: address = None
 
     import where3
     pays = []
 
     # сюда пришло значит ищес общий список
     pays_process = []
-    where3.found_pay_ins_process(db, addr, pays_process)
+    where3.found_pay_ins_process(db, address, pays_process)
     pays = []
-    privat = where3.found_pay_ins(db, addr, pays)
+    privat = where3.found_pay_ins(db, address, pays)
 
     pays_unconf = []
     if not privat:

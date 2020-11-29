@@ -349,7 +349,7 @@ def send(db, curr, xcurr, addr, amo, conn_in=None, token_system=None, token=None
             to_send_amo = int(amo * 100000000)
             to_send_amo = float(to_send_amo) / 100000000.0
 
-            print 'res = conn.sendtoaddress(addr, amo)', to_send_amo
+            print 'res = conn.sendtoaddress(address, amo)', to_send_amo
             res = cc.sendtoaddress(addr, to_send_amo)
             print "SENDed? ", res
         # else:

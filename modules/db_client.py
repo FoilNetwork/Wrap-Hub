@@ -84,7 +84,7 @@ def get_deal_acc_addr(db, deal_id, curr_out, deal_acc, addr, xcurr_in):
     else:
         deal_acc_id = deal_acc.id
 
-    deal_acc_addr = db((db.deal_acc_addrs.addr == addr)
+    deal_acc_addr = db((db.deal_acc_addrs.address == addr)
                        & (db.deal_acc_addrs.xcurr_id == xcurr_in.id)).select().first()
 
     if not deal_acc_addr:
@@ -100,7 +100,7 @@ def get_deal_acc_addr_for_xcurr(db, deal_acc_id, curr, xcurr, x_acc_label):
                        & (db.deal_acc_addrs.xcurr_id == xcurr.id)
                        ).select().first()
     if deal_acc_addr:
-        ##print 'get_deal_acc_addr_for_xcurr found:', 'deal_acc_id:', deal_acc_id, 'xcurr_id:', xcurr.id, '>>', deal_acc_addr.id, deal_acc_addr.addr
+        ##print 'get_deal_acc_addr_for_xcurr found:', 'deal_acc_id:', deal_acc_id, 'xcurr_id:', xcurr.id, '>>', deal_acc_addr.id, deal_acc_addr.address
         return deal_acc_addr
 
     # Erachain tokens?
@@ -129,7 +129,7 @@ def get_deal_acc_addr_for_xcurr(db, deal_acc_id, curr, xcurr, x_acc_label):
             x_acc_label = x_acc_label.decode('utf8')
             # x_acc_label = x_acc_label.encode('koi8_r') # 'iso8859_5') # 'cp866') # 'cp1251') #'cp855')
             # x_acc_label = x_acc_label.decode('cp855')
-            ##print 'GET new addr for x_acc_label:', x_acc_label
+            ##print 'GET new address for x_acc_label:', x_acc_label
             try:
                 addr = crypto_client.get_xaddress_by_label(conn, x_acc_label)
             except:
@@ -143,7 +143,7 @@ def get_deal_acc_addr_for_xcurr(db, deal_acc_id, curr, xcurr, x_acc_label):
         xcurr_id=xcurr.id,
         addr=addr)
     deal_acc_addr = db.deal_acc_addrs[id]
-    ##print 'GETed new addr :', addr
+    ##print 'GETed new address :', address
     return deal_acc_addr
 
 

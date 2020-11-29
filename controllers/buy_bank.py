@@ -40,7 +40,7 @@ def check():
              & (db.buys.operation_id == ref)).select().first()
     if not rec:
         return T('Платеж не найден') # Records not founded
-    if rec.buys.addr:
+    if rec.buys.address:
         return T('Адрес уже задан') # This payment already assigned!!!
 
     from db_common import get_currs_by_addr

@@ -96,7 +96,7 @@ def list():
             ed_op_res = 'acc error'
 
     response.js = "$('.go-btn').removeClass('disabled');$('#go').children('i').removeClass('fa-refresh fa-spin').addClass('fa-search');"
-    addr = request.args(0) or request.vars.addr
+    addr = request.args(0) or request.vars.address
     if addr and len(addr) > 40: addr = None
     try:
         session.seeAddr = addr
@@ -114,7 +114,7 @@ def list():
     no_addr = addr == "????"
     if addr and not no_addr:
         # если адрес известен то вытащим все данные сразу
-        deal_acc_addr = db(db.deal_acc_addrs.addr == addr).select().first()
+        deal_acc_addr = db(db.deal_acc_addrs.address == addr).select().first()
         if not deal_acc_addr:
             return mess('Deals not found')
         xcurr_in = db.xcurrs[deal_acc_addr.xcurr_id]

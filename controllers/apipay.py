@@ -453,7 +453,7 @@ def get_uri_in():
         if not deal_acc_addr:
             return mess('Connection to [%s] is lost, try later ' % curr_in_name)
 
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
         
 
     deal_acc = db.deal_accs[deal_acc_id]
@@ -651,7 +651,7 @@ def get_uri():
         if not deal_acc_addr:
             return mess('Connection to [%s] is lost, try later ' % curr_in_name)
 
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
         
 
     deal_acc = db.deal_accs[deal_acc_id]
@@ -794,7 +794,7 @@ def history():
         
         xcurr_in = r.xcurrs
         curr_in = r.currs
-        addr = r.deal_acc_addrs.addr
+        addr = r.deal_acc_addrs.address
         
         pays_unconf_curr = where3.found_unconfirmed_coins(db, curr_in, xcurr_in)
         for item in pays_unconf_curr:

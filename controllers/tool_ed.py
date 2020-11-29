@@ -12,7 +12,7 @@ def try_buy_stack():
     if not buy_st: return 'buy_stack rec not exist'
     buy = db.buys[ buy_st.ref_ ]
     
-    mess = buy.addr
+    mess = buy.address
     xcurr, addr = ed_common.is_order_addr(db, mess)
     print xcurr
     if xcurr and not buy.xcurr_id:

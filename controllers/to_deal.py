@@ -300,7 +300,7 @@ def get():
         if not deal_acc_addr:
             return mess( T(' связь с кошельком ') + curr_in.name + T(' прервана.'))
 
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
 
     deal_name = deal.name
     # если есть скрытый партнерский код то его забьем пользователю

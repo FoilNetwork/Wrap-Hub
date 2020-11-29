@@ -34,7 +34,7 @@ def index():
             deal_acc = db(db.deal_accs.partner == addr).select().first()
         else:
             #print address
-            deal_acc_addr = db(db.deal_acc_addrs.addr == addr).select().first()
+            deal_acc_addr = db(db.deal_acc_addrs.address == addr).select().first()
             if not deal_acc_addr: return dict(mess=T("такой адрес не найден"), cod=None)
     
             deal_acc = db.deal_accs[deal_acc_addr.deal_acc_id]

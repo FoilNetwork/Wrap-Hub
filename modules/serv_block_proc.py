@@ -138,7 +138,7 @@ def b_p_db_update(db, conn, curr, xcurr, token_system, token, tab, curr_block):
 
 
         else:
-            deal_acc_addr = db((db.deal_acc_addrs.addr == recipient)
+            deal_acc_addr = db((db.deal_acc_addrs.address == recipient)
                                & (db.deal_acc_addrs.xcurr_id == xcurr.id)).select().first()
 
             # TODO
@@ -167,7 +167,7 @@ def b_p_db_update(db, conn, curr, xcurr, token_system, token, tab, curr_block):
             continue
 
         if not token_system and deal_acc_addr:
-            addr_ret = deal_acc_addr.addr_return
+            addr_ret = deal_acc_addr.address_return
             if deal_acc_addr.unused and conn and addr_ret:
                 # переводы на этоот адрес запрещены - тоже вернем его
                 print 'UNUSED [%s] address %s for account:"%s"' % (curr.abbrev, recipient, deal_acc)
@@ -527,7 +527,7 @@ def b_p_proc_unspent(db, conn, curr, xcurr, addr_in=None, from_block_in=None):
             continue
         if not deal_acc:
             deal_acc = conn.getaccount(recipient)
-        # print deal_acc, addr
+        # print deal_acc, address
         # print amount, txid, vout
 
         sumUnsp = sumUnsp and sumUnsp + amount or amount

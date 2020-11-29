@@ -405,9 +405,9 @@ def is_order_addr(db, mess, test=None ):
             #print 'is_order_addr isdigits', order_id
             order = db.addr_orders[ order_id ]
             if order:
-                #print 'is_order_addr order',  order.addr
+                #print 'is_order_addr order',  order.address
                 xcurr = db.xcurrs[ order.xcurr_id ]
-                addr = order.addr
+                addr = order.address
                 return xcurr, addr and addr.strip()
         else:
             print 'is_payment_for_buy -  orderId:', order_id

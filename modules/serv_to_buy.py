@@ -240,7 +240,7 @@ def proc_ecurr(db, curr, xcurr, conn):
         else:
             mess = None
 
-        res, bal = buy_free(db, deal, curr_in, rec.ecurrs, float(volume_in_cred), curr_out, xcurr, rec.buys.addr, conn)
+        res, bal = buy_free(db, deal, curr_in, rec.ecurrs, float(volume_in_cred), curr_out, xcurr, rec.buys.address, conn)
         # запомним результат и апдейт балансов сделаем
         # тут же удаляет стек
         in_proc = res_update(db, rec.buys_stack.id, deal.id, res, bal, rec.buys, curr_out, xcurr, mess)
@@ -388,7 +388,7 @@ def proc_history(db, only_list=None, ed_acc=None, from_dt_in=None):
             # и номер обработанной транзакции тоже не сохранится
             ##amo = info['amo']
             xcurr = info['xcurr']
-            addr = info['addr']
+            addr = info['address']
 
             ss1 = 'ADDED: %s xcurr.id:%s %s %s' % ( amo, xcurr and xcurr.id, addr, rec['datetime'])
             if not only_list:
@@ -400,7 +400,7 @@ def proc_history(db, only_list=None, ed_acc=None, from_dt_in=None):
                     addr=addr,
                     amount = amo,
                     ## если неопределена крипта выхода то ожидаем
-                    status = xcurr and addr and 'progress' or 'addr waiting',
+                    status = xcurr and addr and 'progress' or 'address waiting',
                     )
                 db.buys_stack.insert(ref_=buy_id)
                 print ss1

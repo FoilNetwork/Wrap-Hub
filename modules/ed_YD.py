@@ -414,7 +414,7 @@ status	:	success
 title	:	АЛЬФА-БАНК, пополнение
 type	:	deposition
 for return - { 'sender': info['sender'], 'operation_id': info['operation_id'],
-            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'addr': addr,
+            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'address': address,
             'ecurr_abbrev':'RUB', 'partner': partner,
             }, None
     '''
@@ -513,7 +513,7 @@ title	:Перевод от 410011949054154
         ##ss = str(ss).decode('cp1251')
         #print ss
         abbrev, addr_0, addr = ss.partition(' ')
-        print 'abbrev=%s\naddr_0=%s\naddr=%s' % (abbrev, addr_0, addr)
+        print 'abbrev=%s\naddr_0=%s\naddress=%s' % (abbrev, addr_0, addr)
 
         if abbrev and not addr:
             xcurr, addr = ed_common.is_order_addr(db, abbrev)
@@ -521,9 +521,9 @@ title	:Перевод от 410011949054154
                 addr = abbrev
                 abbrev = db_common.get_currs_by_addr(db, addr, True)
                 log(db, 'try use %s as ADDR' % addr)
-                #print abbrev, addr
+                #print abbrev, address
             if not abbrev:
-                mess = 'xcurr or wallet addr not in payments message [%s]' % info['message']
+                mess = 'xcurr or wallet address not in payments message [%s]' % info['message']
                 log(db, mess)
                 #print mess
                 return None, mess
@@ -551,7 +551,7 @@ title	:Перевод от 410011949054154
 
     ##print xcurr
     return { 'sender': info['sender'], 'operation_id': info['operation_id'],
-            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'addr': addr and addr.strip() or None,
+            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'address': addr and addr.strip() or None,
             'ecurr_abbrev':'RUB', 'partner': partner,
             }, None
 

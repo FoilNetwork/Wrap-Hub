@@ -12,9 +12,9 @@
                 <input name="curr_out" type="hidden" value="{{=curr_out_id}}"
                        />
                 {{=T('Адрес %s кошелька, на который Вы хотите получить актив?') % curr_out_name}}<br />
-                <input class="blue-c wallet" id="addr" name="addr"  placeholder="{{=T('Введите Ваш адрес криптовалюты')}}"
-                         type="text" value="{{=vars.addr or addr or ''}}"
-                       {{=vars.addr and 'readonly' or ''}} />
+                <input class="blue-c wallet" id="address" name="address"  placeholder="{{=T('Введите Ваш адрес криптовалюты')}}"
+                         type="text" value="{{=vars.address or addr or ''}}"
+                       {{=vars.address and 'readonly' or ''}} />
             </div>
         </div>
         <div class="row" style="padding-bottom:10px;">

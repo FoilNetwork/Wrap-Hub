@@ -85,7 +85,7 @@ def bank_check():
              & (db.buys.operation_id == ref)).select().first()
     if not rec:
         return mess('Платеж не найден') # Records not founded
-    if rec.buys.addr:
+    if rec.buys.address:
         return mess('Адрес уже задан') # This payment already assigned!!!
 
     from db_common import get_currs_by_addr
@@ -240,8 +240,8 @@ def get():
         'bg-warning pb-10')
 
     # создадим номер заказа чтобы не показывать что мы на крипту принимаем платеж
-    order = db((db.addr_orders.xcurr_id == xcurr_out.id)
-               & (db.addr_orders.addr == addr)).select().first()
+    order = db((db.address_orders.xcurr_id == xcurr_out.id)
+               & (db.addr_orders.address == addr)).select().first()
     if not order:
         order_id = db.addr_orders.insert( xcurr_id = xcurr_out.id, addr = addr )
     else:

@@ -73,11 +73,11 @@ def check_order(db, order_stack_id):
 # и запомним все в базе
 # если есть order_stack_id - то и его удалим
 def make_edealer_payment(db, geted_pays,  curr_in, xcurr, curr_out, ecurr, vol_in, volume_out, deal_acc_addr, rate, order_stack_id=None, dealer=None, dealer_acc=None, dealer_deal=None):
-    #print 'try payout rub:', vol_in, curr_in.abbrev, volume_out , curr_out.abbrev, deal_acc_addr.addr, '\n', geted_pays
+    #print 'try payout rub:', vol_in, curr_in.abbrev, volume_out , curr_out.abbrev, deal_acc_addr.address, '\n', geted_pays
     # заодно проверим не занята ли база is loocked
     # сейчас копим на счету услуги if volume_out>13:
     #    # но это не для мелких платежей
-    #    log_commit( db, 'try payout: make_edealer_payment %s[%s] -> %s[%s] %s \n geted_pays: %s' % ( vol_in, curr_in.abbrev, volume_out, curr_out.abbrev, deal_acc_addr.addr, geted_pays))
+    #    log_commit( db, 'try payout: make_edealer_payment %s[%s] -> %s[%s] %s \n geted_pays: %s' % ( vol_in, curr_in.abbrev, volume_out, curr_out.abbrev, deal_acc_addr.address, geted_pays))
     #return
 
     ## проверим запасы - если есть ограничение по баласу то откажем в выплатах
@@ -119,8 +119,8 @@ def make_edealer_payment(db, geted_pays,  curr_in, xcurr, curr_out, ecurr, vol_i
             log(db, ' input_stack.in_proc == True : return' )
             return
 
-    print '\ntry payout:', vol_in, curr_in.abbrev, '-->', volume_out, curr_out.abbrev, deal_acc_addr.addr, '\n', 'geted_pays:', geted_pays
-    #log(db, '%s %s %s %s %s %s %s %s %s' % ('try payout:', vol_in, curr_in.abbrev, '-->', volume_out, curr_out.abbrev, deal_acc_addr.addr,  ' - geted_pays:', geted_pays))
+    print '\ntry payout:', vol_in, curr_in.abbrev, '-->', volume_out, curr_out.abbrev, deal_acc_addr.address, '\n', 'geted_pays:', geted_pays
+    #log(db, '%s %s %s %s %s %s %s %s %s' % ('try payout:', vol_in, curr_in.abbrev, '-->', volume_out, curr_out.abbrev, deal_acc_addr.address,  ' - geted_pays:', geted_pays))
 
     if ecurr:
         MIN = deal.MIN_pay
@@ -635,7 +635,7 @@ def proc_free_payments(db, curr_in, xcurr, used_pays):
                     # если этот платеж уже по заказам пытались выплатиьть
                     # но у него видимо ошибка, то не платим тут
                     continue
-                print 'income:', row_deal_acc_addrs.addr, pay.pay_ins.amount
+                print 'income:', row_deal_acc_addrs.address, pay.pay_ins.amount
                 amo = amo + Decimal(pay.pay_ins.amount)
                 geted_pays.append(pay.pay_ins_stack.id)
                 if ecurr and amo * rate_out > grp_deal.MAX_pay:
@@ -691,7 +691,7 @@ def proc_xcurr(db, curr_in, xcurr):
         # здесь будет время создания транзакции а не когда у нее подтвержлдения случились
         # поэтому задержку даем максимум 5 минут = 5х60
         # для оставшихся ордеров найдем платежи
-        #print 'ORDER: ',r.orders.volume_in, 'TO PHONE:', r.deal_acc_addrs.xcurr_id, r.deal_acc_addrs.addr
+        #print 'ORDER: ',r.orders.volume_in, 'TO PHONE:', r.deal_acc_addrs.xcurr_id, r.deal_acc_addrs.address
         # для данного ордера (аккаунт+валюта) все записи в стеке с датой под ордер
         geted_pays = []
         amo = 0

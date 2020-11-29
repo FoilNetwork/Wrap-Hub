@@ -539,14 +539,14 @@ title	:
         return None, mess
 
     abbrev, addr_0, addr = info['message'].partition(' ')
-    print 'abbrev, addr_0, addr', abbrev, addr_0, addr
+    print 'abbrev, addr_0, address', abbrev, addr_0, addr
     if abbrev and not addr:
         addr = abbrev
         abbrev = db_common.get_currs_by_addr(db, addr, True)
         log(db, 'try use %s as ADDR' % addr)
         print abbrev, addr
     if not abbrev:
-        mess = 'xcurr or wallet addr not in payments message [%s]' % info['message']
+        mess = 'xcurr or wallet address not in payments message [%s]' % info['message']
         log(db, mess)
         print mess
         return None, mess
@@ -568,7 +568,7 @@ title	:
         return None, mess
 
     return { 'sender': info['sender'], 'operation_id': info['operation_id'],
-            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'addr': addr,
+            'amo': info['amount'], 'curr':curr, 'xcurr': xcurr, 'address': addr,
             'ecurr_abbrev':'RUB', 'partner': partner,
             }, None
 

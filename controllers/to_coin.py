@@ -52,7 +52,7 @@ def get_uri_in():
     h, result = get_rate_result(request, get_currs = True)
     print result
     
-    addr_out = request.vars.addr
+    addr_out = request.vars.address
     #print request.vars
     if not addr_out:
         return mess(T('ОШИБКА: Задайте кошелек'))

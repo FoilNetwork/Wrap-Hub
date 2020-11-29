@@ -18,6 +18,6 @@ def a():
             order = db.addr_orders[ order_id ]
             if order:
                 xcurr = db.xcurrs[ order.xcurr_id ]
-                addr = order.addr
+                addr = order.address
                 if xcurr: return addr
     return 'ddd'

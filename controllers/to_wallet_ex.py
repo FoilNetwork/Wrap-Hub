@@ -146,7 +146,7 @@ def pay():
             return dict(uri= T(' связь с кошельком ') + curr_in.name + T(' прервана.'), addr=None)
 
         #request.vars['deal_acc_addr']=deal_acc_addr
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
 
     request.vars['addr_in']=addr_in
 

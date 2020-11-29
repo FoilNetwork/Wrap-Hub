@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-{{addr = request.vars.addr or request.args(0) or session.seeAddr or ''}}
+{{addr = request.vars.address or request.args(0) or session.seeAddr or ''}}
 
 <div class="container">
     <h1>{{=T('Просмотр платежей биткоинами и другими токенами')}}</h1>
@@ -12,17 +12,17 @@
         <div class="row" style="padding-bottom:10px;">
             <div class="col-lg-9 col-md-11 col-sm-12">{{=T('Вставьте адрес вашего платежа для поиска своих оплат или оставьте пусто для просмотра последних платежей нашей службы')}}<br />
                 <form action="javascript: void(0);" enctype="multipart/form-data" method="post" id="inp_f">
-                    <input class="blue-c" name="addr" placeholder="{{=T('Введите адрес кошелька криптовалют')}}"
-                       autofocus="1" id="addr"
+                    <input class="blue-c" name="address" placeholder="{{=T('Введите адрес кошелька криптовалют')}}"
+                       autofocus="1" id="address"
                        style="  width: 100%; padding:5px; margin-bottom:25px;"
                        type="text" value="{{=addr}}" /> <br>
                 {{=A(TAG.i(_class='fa fa-search', _style='width:100px;'),
                     _id = 'go',
-                    _onclick='ajax("'+URL('where', 'list')+'", ["addr", "acc", "op_id"], "tag");$(".go-btn").addClass("disabled");$(this).children("i").removeClass("fa-search").addClass("fa-refresh fa-spin");',
+                    _onclick='ajax("'+URL('where', 'list')+'", ["address", "acc", "op_id"], "tag");$(".go-btn").addClass("disabled");$(this).children("i").removeClass("fa-search").addClass("fa-refresh fa-spin");',
                     _class='go-btn button ll-blue-bgc center',
                     )}}
                 <button class="go-btn hidden"
-                    onclick='ajax("{{=URL('where', 'list')}}", ["addr", "acc", "op_id"], "tag");$(".go-btn").addClass("disabled");$("#go").children("i").removeClass("fa-search").addClass("fa-refresh fa-spin");'
+                    onclick='ajax("{{=URL('where', 'list')}}", ["address", "acc", "op_id"], "tag");$(".go-btn").addClass("disabled");$("#go").children("i").removeClass("fa-search").addClass("fa-refresh fa-spin");'
                     type='submit'
                         />
                 </form>

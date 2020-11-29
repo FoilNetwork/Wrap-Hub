@@ -199,7 +199,7 @@ def get():
             return mess(T('Связь с кошельком ') + curr_in.name + T(' прервана.') + ' ' + T('Пожалуйста попробуйте позже'), 'warning')
 
         #request.vars['deal_acc_addr']=deal_acc_addr
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
 
     curr_in_abbrev = curr_in.abbrev
 

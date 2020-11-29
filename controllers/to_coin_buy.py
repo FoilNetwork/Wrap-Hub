@@ -67,7 +67,7 @@ def get():
     except:
         return mess('digs...')
 
-    addr_out = request.vars.addr
+    addr_out = request.vars.address
     #print request.vars
     if not addr_out:
         return mess(T('ОШИБКА: Задайте кошелек'))
@@ -157,7 +157,7 @@ def get():
         if not deal_acc_addr:
             return mess((T('Связь с сервером %s прервана') % curr_in_name) + '. ' + T('Невозможно получить адрес для платежа') + '. ' + T('Пожалуйста попробуйте позже'), 'warning')
 
-        addr_in = deal_acc_addr.addr
+        addr_in = deal_acc_addr.address
         
     h = CAT()
 

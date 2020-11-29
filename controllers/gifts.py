@@ -32,7 +32,7 @@ def add():
     response.js = "$('.go-btn').removeClass('disabled');$('#go').children('i').removeClass('fa-refresh fa-spin').addClass('fa-search');"
     addr = request.vars.wallet
     cod = request.vars.cod
-    deal_acc_addrs = db(db.deal_acc_addrs.addr == addr).select().first()
+    deal_acc_addrs = db(db.deal_acc_addrs.address == addr).select().first()
     if not deal_acc_addrs:
         return mess('Адрес не найден')
         
