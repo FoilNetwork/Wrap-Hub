@@ -1,15 +1,15 @@
-
 ## Bitcoin & Fiat payment service
 
-see last version on GitLab https://gitlab.com/d.ermolaev/7pay_in
+see last version on GitLab https://gitlab.com/FoilNetwork/WrapHub
 
-> DEMO
-http://datachains.world/7pay_in
+> DEMO (Example)
+https://api.face2face.cash/where
+https://face2face.cash/where
 
 
 #### python +  [web2py framework](http://web2py.com/books/default/chapter/29/14/other-recipes?search=eclipse#Developing-with-IDEs--WingIDE--Rad2Py--Eclipse-and-PyCharm)
 
-https://bitcointalk.org/index.php?topic=1927911
+
 
 ### Included SERVICES:
 + EXCHANGE bitcoin and crypto currencies to fiat currencies
@@ -23,18 +23,20 @@ https://bitcointalk.org/index.php?topic=1927911
 ### List of cryptocurrencies
 + bitcoin
 + litecoin
-+ dash
++ Ethereum
++ Horizen
 + dogecoin
 + peercoin
 + novacoin
 + sibcoin
-+ etc.
++ dash
 
 ### List of FIAT money
 + Yandex.Money
 
 ### INSTALL HELP (RUS)
 https://docs.google.com/document/d/1zmR4CA_e-Z0k3Z9IDlnBc87JthoEtmY2vslIvhqphRE/edit?usp=sharing
+### INSTALL HELP (ENG)
 
 ### DATABASE init
 Use initial SQL statement:  
@@ -61,9 +63,9 @@ see /_apache folder
 ### For MS IIS
 see [web2py on IIS](http://web2py.com/books/default/chapter/29/13/deployment-recipes#IIS)
 
+### Team & HELP
+foilteam@foil.network
+Telegram +34663607731 @Bambuchasensei
+Discord FoilNetwork https://discord.gg/wDCnZamnaf
 
-### AUTHOR & HELP
-Skype i-creator
-Mail icreator@mail.ru
 
-> Written with [StackEdit](https://stackedit.io/).
