@@ -1,11 +1,11 @@
-
 ## Bitcoin & Fiat payment service
 
-see last version on GitLab https://gitlab.com/d.ermolaev/7pay_in
+see last version on GitLab https://gitlab.com/FoilNetwork/WrapHub
 
 > DEMO
 http://datachains.world/7pay_in
-
+https://api.face2face.cash/where
+https://face2face.cash/where
 
 #### python +  [web2py framework](http://web2py.com/books/default/chapter/29/14/other-recipes?search=eclipse#Developing-with-IDEs--WingIDE--Rad2Py--Eclipse-and-PyCharm)
 
