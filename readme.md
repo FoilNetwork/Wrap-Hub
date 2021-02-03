@@ -9,25 +9,26 @@ https://face2face.cash/where
 
 #### python +  [web2py framework](http://web2py.com/books/default/chapter/29/14/other-recipes?search=eclipse#Developing-with-IDEs--WingIDE--Rad2Py--Eclipse-and-PyCharm)
 
-https://bitcointalk.org/index.php?topic=1927911
+
 
 ### Included SERVICES:
 + EXCHANGE bitcoin and crypto currencies to fiat currencies
-+ payment in bitcoin and crypto currencies for mobile phone, games etc.
++ payment in bitcoin and crypto currencies.
++ Wraping cryptocurrencies from mainchain ro FOIL Network
++ Swap
 + buy bitcoin and crypto currencies
-+ simple shop merchant
 + API
 + auto gathering rating from bitcoin exchanges (btc-e.com poloniex.com etc.)
 + etc.
 
 ### List of cryptocurrencies
 + bitcoin
++ Ethereum
++ Zen
 + litecoin
 + dash
 + dogecoin
 + peercoin
-+ novacoin
-+ sibcoin
 + etc.
 
 ### List of FIAT money
@@ -36,9 +37,6 @@ https://bitcointalk.org/index.php?topic=1927911
 ### INSTALL HELP (RUS)
 https://docs.google.com/document/d/1zmR4CA_e-Z0k3Z9IDlnBc87JthoEtmY2vslIvhqphRE/edit?usp=sharing
 
-### DATABASE init
-Use initial SQL statement:  
-**7pay-Dump20171123.zip**
 
 ### For configure routes in web2py use:
 + Edit **routes.py** in application folder (/web2py/applications/7pay_in)
@@ -63,7 +61,8 @@ see [web2py on IIS](http://web2py.com/books/default/chapter/29/13/deployment-rec
 
 
 ### AUTHOR & HELP
-Skype i-creator
-Mail icreator@mail.ru
+Telegram +34663607731 @Bambuchasensei
+foilteam@foil.network
+https://discord.gg/wDCnZamnaf - discord
 
 > Written with [StackEdit](https://stackedit.io/).
